@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED", "fnState": "READY", "fiscalInfo": {
+  "shiftNumber": 8,
+  "checkNumber": 1,
+  "kktNumber": "199036005916",
+  "fnNumber": "9999078900008998",
+  "fnDocNumber": 571,
+  "fnDocMark": 3125146288,
+  "date": "2019-09-04T07:14:00+00:00",
+  "sum": 200,
+  "checkType": "SALE",
+  "qr": "t=20190904T141400&s=200.00&fn=9999078900008998&i=0000000571&fp=3125146288&n=1",
+  "ecrRegistrationNumber": "0000000000028799"
+},
+  "failureInfo": null,
+  "message": "Document successfully completed with callback", "timeStatusChanged": "2019-09-04T07:14:51+00:00"
+}

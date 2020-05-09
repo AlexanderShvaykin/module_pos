@@ -1,0 +1,42 @@
+{
+  "docNum": "Order-1",
+  "id": "dda2911b-5681-4a02-bd3d-3f0d0df849da",
+  "docType": "SALE",
+  "checkoutDateTime": "2019-08-16T15:45:17+07:00",
+  "email": "example@example.com",
+  "printReceipt": false,
+  "textToPrint": null,
+  "cashierName": "ФИО кассира",
+  "cashierInn": null,
+  "cashierPosition": "Старший кассир",
+  "responseURL": "https://internet.shop.ru/order/982340931/checkout?completed=1",
+  "taxMode": "COMMON",
+  "clientName": null,
+  "clientInn": null,
+  "agentInfo": null,
+  "inventPositions": [
+    {
+      "barcode": "10001",
+      "name": "Молоко Лебедевское, 2,5%",
+      "nomenclatureCode": null,
+      "productMark": null,
+      "price": 52,
+      "discSum": 5.2,
+      "quantity": 1,
+      "vatSum": null,
+      "vatTag": 1102,
+      "paymentObject": "commodity",
+      "paymentMethod": "full_payment",
+      "originCountryCode": null,
+      "customsDeclarationNumber": null,
+      "agentInfo": null,
+      "supplierInfo": null
+    }
+  ],
+  "moneyPositions": [
+    {
+      "paymentType": "CARD",
+      "sum": 46.8
+    }
+  ]
+}

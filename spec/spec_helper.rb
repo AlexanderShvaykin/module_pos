@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "module_pos"
+require "module_pos/fiscalization"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

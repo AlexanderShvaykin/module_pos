@@ -1,17 +1,14 @@
 ![Ruby](https://github.com/AlexanderShvaykin/module_pos/workflows/Ruby/badge.svg)
 
-# ModulePos
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/modul/pos`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+# ModulePos::Fiscalization
+Simple lib, wrapped https://modulkassa.ru API for fiscalization online receipts
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'module_pos'
+gem ' module_pos-fiscalization'
 ```
 
 And then execute:
@@ -20,11 +17,53 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install module_pos
+    $ gem install  module_pos-fiscalization
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+receipt = Order.find("some_id").receipt
+host = "https://modulepos.test.server"
+secrets = ModulePos::Fiscalization::Client.new(host: host).associate('you_uid').create
+user_name = secrets.user_name
+pass = secrets.password
+ModulePos::Fiscalization::Client.new(host: host, username: user_name, pass: pass) do |client|
+  if client.status.ready?
+    doc = ModulePos::Fiscalization::Doc.create(
+        doc_num:            "Order-1",
+        id:                 "dda2911b-5681-4a02-bd3d-3f0d0df849da",
+        doc_type:           "SALE",
+        checkout_date_time: "2019-08-16T15:45:17+07:00",
+        email:              "example@example.com",
+        print_receipt:      false,
+        text_to_print:      nil,
+        responseURL:        "https://internet.shop.ru/order/982340931/checkout?completed=1",
+        tax_mode:           "COMMON",
+        agent_info:         nil,
+        invent_positions:   [
+                              {
+                                barcode:        "10001",
+                                name:           "Молоко Лебедевское, 2,5%",
+                                price:          52,
+                                discSum:        "5.2",
+                                quantity:       1,
+                                vatTag:         1102,
+                                payment_object: "commodity",
+                                payment_method: "full_payment",
+                              }
+                            ],
+        moneyPositions:     [{ paymentType: "CARD", sum: "46.8" }]
+    )
+
+    client.docs.save(doc)
+    client.docs.re_queue(doc.id) if client.docs.status(doc.id).failed?
+    until client.docs.status(doc.id).success? # may be background job
+    end
+    receipt.update(fiscal_info: client.docs.status(doc.id).as_json) 
+  end
+end
+
+```
 
 ## Development
 

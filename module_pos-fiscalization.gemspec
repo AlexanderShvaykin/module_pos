@@ -1,8 +1,8 @@
-require_relative 'lib/module_pos/version'
+require_relative 'lib/module_pos/fiscalization/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "module_pos"
-  spec.version       = ModulePos::VERSION
+  spec.name          = "module_pos-fiscalization"
+  spec.version       = ModulePos::Fiscalization::VERSION
   spec.authors       = ["Alexander Shvaykin"]
   spec.email         = ["skiline.alex@gmail.com"]
 
@@ -24,4 +24,8 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+  spec.add_dependency "faraday", "1.0.1"
+  spec.add_dependency "api_utils", "0.1.1"
+  spec.add_dependency "dry-types", "1.4.0"
+  spec.add_dependency "dry-struct", "1.3.0"
 end
