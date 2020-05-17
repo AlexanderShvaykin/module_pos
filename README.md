@@ -2,6 +2,7 @@
 
 # ModulePos::Fiscalization
 Simple lib, wrapped https://modulkassa.ru API for fiscalization online receipts
+version API v1.4
 
 ## Installation
 
