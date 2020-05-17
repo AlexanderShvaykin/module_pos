@@ -66,6 +66,8 @@ end
 
 ```
 
+Full available fields you find in documentation v1.4 ModuleBank POS Api, you can use snake_case and camelCase
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
