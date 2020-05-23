@@ -4,7 +4,7 @@ module ModulePos::Fiscalization
   class Types
     include Dry.Types()
 
-    PosStatus = DocStatus = Types::String.enum('READY', 'ASSOCIATED', 'FAILED')
+    PosStatus = Types::String.enum('READY', 'ASSOCIATED', 'FAILED')
 
     DocStatus = Types::String.enum(
       'QUEUED', 'PENDING', 'PRINTED', 'WAIT_FOR_CALLBACK', 'COMPLETED', 'FAILED'
