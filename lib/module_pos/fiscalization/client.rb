@@ -105,7 +105,7 @@ module ModulePos::Fiscalization
 
     attr_reader :http, :username, :pass
 
-    def initialize(host:, username: nil, pass: nil,conn: Connection.instance(host) )
+    def initialize(host:, username: nil, pass: nil, conn: Connection.new(host) )
       @http = JsonRequest.new(conn)
       @username = username
       @pass = pass

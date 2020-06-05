@@ -1,11 +1,8 @@
 require 'faraday'
-require 'singleton'
 require 'delegate'
 
 module ModulePos::Fiscalization
   class Connection < Delegator
-    include Singleton
-
     private
 
     def __getobj__
