@@ -13,6 +13,8 @@ require "module_pos/fiscalization/entities/pos_status"
 
 module ModulePos
   module Fiscalization
+    ResponseError = Class.new(StandardError)
+
     module Doc
       module_function
 

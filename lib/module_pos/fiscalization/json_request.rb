@@ -7,7 +7,11 @@ module ModulePos::Fiscalization
     def call(user = nil, pass = nil)
       @conn.basic_auth(user, pass) if user && pass
       response = yield @conn
-      JSON.parse!(response.body).compact unless response.body.empty?
+      if response.status.to_s.match?(/2[0-9][0-9]/)
+        JSON.parse!(response.body).compact unless response.body.empty?
+      else
+        raise ResponseError, "Status: #{response.status} Response: #{response.body}"
+      end
     rescue JSON::ParserError
       raise InvalidResponse
     end

@@ -25,6 +25,20 @@ RSpec.describe ModulePos::Fiscalization::Client do
         stubs.verify_stubbed_calls
       end
 
+      it "raises error if server return error" do
+        stubs.post('/api/fn/v1/associate/123') do |env|
+          with_path env, "/api/fn/v1/associate/123"
+          expect(env.params).to be_empty
+          [
+            400,
+            {},
+            ""
+          ]
+        end
+
+        expect { client.associate('123').create }.to raise_exception(ModulePos::Fiscalization::ResponseError)
+      end
+
       describe "associate with client_id" do
         it 'returns credentials' do
           stubs.post('/api/fn/v1/associate/123') do |env|
