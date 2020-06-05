@@ -7,8 +7,8 @@ RSpec.describe ModulePos::Fiscalization::Client do
   describe "Associate" do
     describe "POST associate" do
       it 'returns credentials' do
-        stubs.post('/v1/associate/123') do |env|
-          with_path env, "/v1/associate/123"
+        stubs.post('/api/fn/v1/associate/123') do |env|
+          with_path env, "/api/fn/v1/associate/123"
           expect(env.params).to be_empty
           [
             200,
@@ -27,9 +27,9 @@ RSpec.describe ModulePos::Fiscalization::Client do
 
       describe "associate with client_id" do
         it 'returns credentials' do
-          stubs.post('/v1/associate/123') do |env|
+          stubs.post('/api/fn/v1/associate/123') do |env|
             # optional: you can inspect the Faraday::Env
-            with_path env, "/v1/associate/123"
+            with_path env, "/api/fn/v1/associate/123"
             with_query env, "clientId" => "lol"
             [
               200,
@@ -50,9 +50,9 @@ RSpec.describe ModulePos::Fiscalization::Client do
 
     describe "DELETE associate" do
       it 'sends delete request' do
-        stubs.delete('/v1/associate/123') do |env|
+        stubs.delete('/api/fn/v1/associate/123') do |env|
           # optional: you can inspect the Faraday::Env
-          with_path env, "/v1/associate/123"
+          with_path env, "/api/fn/v1/associate/123"
           with_basic_auth env, "name", "pass"
           [
             200,
@@ -73,7 +73,7 @@ RSpec.describe ModulePos::Fiscalization::Client do
     let(:client) { described_class.new(conn: conn, host: host, username: name, pass: pass) }
 
     describe "GET status" do
-      let(:path) { "/v1/status" }
+      let(:path) { "/api/fn/v1/status" }
       it 'sends get request' do
         stubs.get(path) do |env|
           with_path env, path

@@ -4,8 +4,8 @@ require 'faraday'
 module ModulePos::Fiscalization
   # Http client for Module POS api
   class Client
-    ASSOCIATE_PATH = "/v1/associate"
-    STATUS_PATH = "/v1/status"
+    ASSOCIATE_PATH = "api/fn/v1/associate"
+    STATUS_PATH = "api/fn/v1/status"
     DOC_PATH = "/v2/doc"
 
     module Scopes
