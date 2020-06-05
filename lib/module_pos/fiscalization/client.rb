@@ -1,4 +1,5 @@
 require "date"
+require 'faraday'
 
 module ModulePos::Fiscalization
   # Http client for Module POS api
@@ -105,7 +106,15 @@ module ModulePos::Fiscalization
 
     attr_reader :http, :username, :pass
 
-    def initialize(host:, username: nil, pass: nil, conn: Connection.new(host) )
+    def initialize(
+      host:,
+      username: nil,
+      pass: nil,
+      conn: Faraday.new(
+          url: host,
+          headers: {'Content-Type' => 'application/json'}
+        )
+    )
       @http = JsonRequest.new(conn)
       @username = username
       @pass = pass

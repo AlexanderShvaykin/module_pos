@@ -2,7 +2,6 @@ require 'api_utils'
 require "module_pos/fiscalization/version"
 require "module_pos/fiscalization/types"
 require "module_pos/fiscalization/json_request"
-require "module_pos/fiscalization/connection"
 require "module_pos/fiscalization/client"
 require "module_pos/fiscalization/entities/base"
 require "module_pos/fiscalization/entities/secret"
