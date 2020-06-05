@@ -18,8 +18,9 @@ module ModulePos::Fiscalization
 
     private
 
-    def initialize(conn)
+    def initialize(conn, logger = nil)
       @conn = conn
+      @conn.response(:logger, logger) if logger
     end
   end
 end

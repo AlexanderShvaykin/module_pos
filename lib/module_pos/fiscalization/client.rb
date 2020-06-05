@@ -111,11 +111,12 @@ module ModulePos::Fiscalization
       username: nil,
       pass: nil,
       conn: Faraday.new(
-          url: host,
-          headers: {'Content-Type' => 'application/json'}
-        )
+        url:     host,
+        headers: { 'Content-Type' => 'application/json' }
+      ),
+      logger: nil
     )
-      @http = JsonRequest.new(conn)
+      @http = JsonRequest.new(conn, logger)
       @username = username
       @pass = pass
       yield(self) if block_given?
