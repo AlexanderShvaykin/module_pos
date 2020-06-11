@@ -38,10 +38,8 @@ ModulePos::Fiscalization::Client.new(host: host, username: user_name, pass: pass
         checkout_date_time: "2019-08-16T15:45:17+07:00",
         email:              "example@example.com",
         print_receipt:      false,
-        text_to_print:      nil,
         responseURL:        "https://internet.shop.ru/order/982340931/checkout?completed=1",
         tax_mode:           "COMMON",
-        agent_info:         nil,
         invent_positions:   [
                               {
                                 barcode:        "10001",
