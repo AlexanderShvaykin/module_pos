@@ -25,8 +25,10 @@ module ModulePos::Fiscalization
       class Associate < Base
         # @param [String] client_id
         # @return [ModulePos::V1::Entities::Secret]
-        def create(client_id: nil)
-          resp = http.call do |conn|
+        # @param [String] login
+        # @param [String] secret
+        def create(login:, secret:, client_id: nil)
+          resp = http.call(login, secret) do |conn|
             conn.post(path) do |req|
               req.params["clientId"] = client_id if client_id
             end
@@ -38,7 +40,7 @@ module ModulePos::Fiscalization
         # @return [NilClass]
         # @param [String] username
         # @param [String] password
-        def delete(username, password)
+        def delete(username:, password:)
           http.call(username, password) { |conn| conn.delete(path) }
           nil
         end

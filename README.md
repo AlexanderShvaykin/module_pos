@@ -25,9 +25,10 @@ Or install it yourself as:
 ```ruby
 receipt = Order.find("some_id").receipt
 host = "https://modulepos.test.server"
-secrets = ModulePos::Fiscalization::Client.new(host: host).associate('you_uid').create
+secrets = ModulePos::Fiscalization::Client.new(host: host).associate('you_uid').create(login: "login", secret: "secret")
 user_name = secrets.user_name
 pass = secrets.password
+
 ModulePos::Fiscalization::Client.new(host: host, username: user_name, pass: pass) do |client|
   if client.status.ready?
     doc = ModulePos::Fiscalization::Doc.create(

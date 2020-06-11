@@ -6,9 +6,15 @@ RSpec.describe ModulePos::Fiscalization::Client do
 
   describe "Associate" do
     describe "POST associate" do
+      subject { client.associate('123').create(params) }
+
+      let(:params) do
+        { login: "site_login", secret: "site_password" }
+      end
       it 'returns credentials' do
         stubs.post('/api/fn/v1/associate/123') do |env|
           with_path env, "/api/fn/v1/associate/123"
+          with_basic_auth env, "site_login", "site_password"
           expect(env.params).to be_empty
           [
             200,
@@ -17,7 +23,7 @@ RSpec.describe ModulePos::Fiscalization::Client do
           ]
         end
 
-        expect(client.associate('123').create)
+        expect(subject)
           .to have_attributes user_name: "54337d0c-975e-4aeb-be5e-ede5a1b194b6",
                               password:  "ECMvSGCtiDq55lee",
                               name:      "Foo",
@@ -27,7 +33,6 @@ RSpec.describe ModulePos::Fiscalization::Client do
 
       it "raises error if server return error" do
         stubs.post('/api/fn/v1/associate/123') do |env|
-          with_path env, "/api/fn/v1/associate/123"
           expect(env.params).to be_empty
           [
             400,
@@ -36,13 +41,16 @@ RSpec.describe ModulePos::Fiscalization::Client do
           ]
         end
 
-        expect { client.associate('123').create }.to raise_exception(ModulePos::Fiscalization::ResponseError)
+        expect { subject }.to raise_exception(ModulePos::Fiscalization::ResponseError)
       end
 
       describe "associate with client_id" do
+        let(:params) do
+          super().merge(client_id: "lol")
+        end
         it 'returns credentials' do
           stubs.post('/api/fn/v1/associate/123') do |env|
-            # optional: you can inspect the Faraday::Env
+            with_basic_auth env, "site_login", "site_password"
             with_path env, "/api/fn/v1/associate/123"
             with_query env, "clientId" => "lol"
             [
@@ -52,7 +60,7 @@ RSpec.describe ModulePos::Fiscalization::Client do
             ]
           end
 
-          expect(client.associate('123').create(client_id: "lol"))
+          expect(subject)
             .to have_attributes user_name: "54337d0c-975e-4aeb-be5e-ede5a1b194b6",
                                 password:  "ECMvSGCtiDq55lee",
                                 name:      "Foo",
@@ -75,7 +83,7 @@ RSpec.describe ModulePos::Fiscalization::Client do
           ]
         end
 
-        client.associate('123').delete("name", "pass")
+        client.associate('123').delete(username: "name", password: "pass")
         stubs.verify_stubbed_calls
       end
     end
