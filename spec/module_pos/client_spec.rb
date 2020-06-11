@@ -116,7 +116,7 @@ RSpec.describe ModulePos::Fiscalization::Client do
     end
 
     describe "POST docs.send" do
-      let(:path) { "/v2/doc" }
+      let(:path) { "/api/fn/v2/doc" }
       let(:doc) do
         ModulePos::Fiscalization::Entities::Doc.new(
           doc_num:            "Order-1",
@@ -168,7 +168,7 @@ RSpec.describe ModulePos::Fiscalization::Client do
     end
 
     describe "GET docs.status" do
-      let(:path) { "/v2/doc/#{id}/status" }
+      let(:path) { "/api/fn/v1/doc/#{id}/status" }
       let(:id) { "q24" }
 
       it 'sends request and return doc status' do
@@ -198,7 +198,7 @@ RSpec.describe ModulePos::Fiscalization::Client do
     end
 
     describe "GET docs.re_queue" do
-      let(:path) { "/v2/doc/#{id}/re-queue" }
+      let(:path) { "/api/fn/v1/doc/#{id}/re-queue" }
       let(:id) { "q24" }
 
       it 'sends request and return doc status' do

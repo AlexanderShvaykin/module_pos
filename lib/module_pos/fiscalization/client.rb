@@ -6,7 +6,8 @@ module ModulePos::Fiscalization
   class Client
     ASSOCIATE_PATH = "api/fn/v1/associate"
     STATUS_PATH = "api/fn/v1/status"
-    DOC_PATH = "/v2/doc"
+    CREATE_DOC_PATH = "/api/fn/v2/doc"
+    DOC_PATH = "/api/fn/v1/doc"
 
     module Scopes
       class Base
@@ -53,7 +54,7 @@ module ModulePos::Fiscalization
         # @return [ModulePos::Fiscalization::Entities::DocStatus]
         def save(doc)
           resp = http.call(username, pass) do |conn|
-            conn.post(path) do |req|
+            conn.post(CREATE_DOC_PATH) do |req|
               req.body = doc.to_json
             end
           end
