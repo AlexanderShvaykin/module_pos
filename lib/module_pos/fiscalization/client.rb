@@ -54,7 +54,7 @@ module ModulePos::Fiscalization
         def save(doc)
           resp = http.call(username, pass) do |conn|
             conn.post(path) do |req|
-              req.body = doc.as_json
+              req.body = doc.to_json
             end
           end
 

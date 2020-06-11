@@ -28,6 +28,11 @@ module ModulePos::Fiscalization
           end
         }
       end
+      alias_method :to_h, :as_json
+
+      def to_json
+        to_h.to_json
+      end
     end
   end
 end

@@ -149,7 +149,7 @@ RSpec.describe ModulePos::Fiscalization::Client do
         stubs.post(path) do |env|
           with_path env, path
           with_basic_auth env, name, pass
-          with_body env, doc.as_json
+          with_body env, doc.to_json
           [
             200,
             {},
